@@ -1,23 +1,27 @@
+import HerroBanner from './Components/HerroBanner'
+import Product from './Components/Product'
 import './globals.css'
-import { Product,Cart,Footer,FooterBanner,HeroBanner,Layout,Navbar } from './Components'
+
 import { client } from '@/lib/client'
 
 const page = async ()  => {
 
-  const product = await client.fetch('*[_type == "product"]')
+  const product = await client.fetch('*[_type == "Product"]')
   const bannerData = await client.fetch('*[_type == "banner"]')
+
+  console.log(product)
 
   return (
     <div>
-   <HeroBanner bannerData={bannerData.length && bannerData[0]}/>
+   <HerroBanner bannerData={bannerData.length && bannerData[0]}/>
 
     <div className="products-heading">
       <h2>Best Selling Headphones</h2>
       <p>Speakers of many variations</p>
     </div>
 
-    <div>
-      {product?.map((item : any) => item)}
+    <div className='products-container'>
+      {product.map((product : any) => <Product key={product._id} product={product}/>)}
     </div>
 
     Footer
