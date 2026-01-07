@@ -1,11 +1,15 @@
-import React from 'react'
 import './globals.css'
 import { Product,Cart,Footer,FooterBanner,HeroBanner,Layout,Navbar } from './Components'
+import { client } from '@/lib/client'
 
-const page = () => {
+const page = async ()  => {
+
+  const product = await client.fetch('*[_type == "product"]')
+  const bannerData = await client.fetch('*[_type == "banner"]')
+
   return (
     <div>
-    HeroBanner
+   <HeroBanner bannerData={bannerData.length && bannerData[0]}/>
 
     <div className="products-heading">
       <h2>Best Selling Headphones</h2>
@@ -13,12 +17,13 @@ const page = () => {
     </div>
 
     <div>
-      {['product1', 'product2'].map((item) => item)}
+      {product?.map((item : any) => item)}
     </div>
 
     Footer
     </div>
   )
 }
+
 
 export default page
