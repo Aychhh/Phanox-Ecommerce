@@ -1,18 +1,23 @@
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
 import { AiOutlineShopping } from 'react-icons/ai'
 
+import { Cart } from './';
+
 const Navbar = () => {
+
   return (
-    <div className='navbar-container'>
+    <div className="navbar-container">
       <p className="logo">
-       <Link href="/">Phanox Headphones</Link> 
+        <Link href="/">JSM Headphones</Link>
       </p>
 
-      <button className='cart-icon'>
-        <AiOutlineShopping/>
-        <span className='absolute -right-2 text-[12px] text-[#eee] rounded-[50%] w-4.5 h-4.5 text-center bg-[#f02d34]'>1</span>
+      <button type="button" className="cart-icon" >
+        <AiOutlineShopping />
+        <span className="cart-item-qty">1</span>
       </button>
+{/* 
+      {showCart && <Cart />} */}
     </div>
   )
 }

@@ -1,14 +1,15 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { urlFor } from '@/lib/client';
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus, AiOutlineStar } from 'react-icons/ai';
 import Product from './Product';
+import StoreContext from '../Context/AuthContext';
 
 const ProductDetail = ({product, products} : any) => {
     const [index, setIndex] = useState(0);
-    const [qty, setQty] = useState(1);
-
       const {image, name, details, price} = product
+
+      const {incQty, decQty, qty} = useContext(StoreContext)
 
   return (
     <div>
@@ -49,9 +50,9 @@ const ProductDetail = ({product, products} : any) => {
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc flex items-center">
-              <span className="minus"><AiOutlineMinus /></span>
+              <span className="minus"><AiOutlineMinus onClick={() => decQty()}/></span>
               <span className="num">{qty}</span>
-              <span className="plus"><AiOutlinePlus /></span>
+              <span className="plus"><AiOutlinePlus onClick={() => incQty()}/></span>
             </p>
           </div>
           <div className="buttons">
