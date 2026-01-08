@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 const Product = ({ product }: any) => {
-  console.log(product)
   return (
     <div>
       <Link href={`/product/${product.slug.current}`}>

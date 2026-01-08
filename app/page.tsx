@@ -1,6 +1,7 @@
+import { FooterBanner } from './Components'
 import HerroBanner from './Components/HerroBanner'
 import Product from './Components/Product'
-import './globals.css'
+
 
 import { client } from '@/lib/client'
 
@@ -9,7 +10,6 @@ const page = async ()  => {
   const product = await client.fetch('*[_type == "Product"]')
   const bannerData = await client.fetch('*[_type == "banner"]')
 
-  console.log(product)
 
   return (
     <div>
@@ -24,7 +24,7 @@ const page = async ()  => {
       {product.map((product : any) => <Product key={product._id} product={product}/>)}
     </div>
 
-    Footer
+      <FooterBanner footerBanner={bannerData.length && bannerData[0]}/>
     </div>
   )
 }
