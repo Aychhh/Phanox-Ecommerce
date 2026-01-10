@@ -9,7 +9,7 @@ const ProductDetail = ({product, products} : any) => {
     const [index, setIndex] = useState(0);
       const {image, name, details, price} = product
 
-      const {incQty, decQty, qty} = useContext(StoreContext)
+      const {incQty, decQty, qty, onAdd} = useContext(StoreContext)
 
   return (
     <div>
@@ -31,7 +31,7 @@ const ProductDetail = ({product, products} : any) => {
         </div>
 
         <div className="product-detail-desc">
-          <h1>{name}</h1>
+          <h1 className='text-bold text-3xl '>{name}</h1>
           <div className="reviews">
             <div className="flex">
               <AiFillStar />
@@ -49,14 +49,14 @@ const ProductDetail = ({product, products} : any) => {
           <p className="price">${price}</p>
           <div className="quantity">
             <h3>Quantity:</h3>
-            <p className="quantity-desc flex items-center">
+            <p className="quantity-desc">
               <span className="minus"><AiOutlineMinus onClick={() => decQty()}/></span>
               <span className="num">{qty}</span>
               <span className="plus"><AiOutlinePlus onClick={() => incQty()}/></span>
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" >Add to Cart</button>
+            <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" >Buy Now</button>
           </div>
         </div>
