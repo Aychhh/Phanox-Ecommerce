@@ -1,15 +1,29 @@
 "use client"
-import React, { useContext, useState } from 'react'
+import { useState } from 'react'
 import { urlFor } from '@/lib/client';
 import { AiFillStar, AiOutlineMinus, AiOutlinePlus, AiOutlineStar } from 'react-icons/ai';
 import Product from './Product';
-import StoreContext from '../Context/AuthContext';
+import { useStateContext } from '../Context/AuthContext';
 
-const ProductDetail = ({product, products} : any) => {
+interface product {
+  name: string;
+  details: string;
+  price: number;
+  image: any[];
+  _id : string;
+  quantity : number;
+  slug : any
+}
+
+interface productProps {
+  products : product[]
+  product : product
+}
+const ProductDetail = ({product, products} : productProps) => {
     const [index, setIndex] = useState(0);
       const {image, name, details, price} = product
 
-      const {incQty, decQty, qty, onAdd} = useContext(StoreContext)
+      const {incQty, decQty, qty, onAdd} = useStateContext()
 
   return (
     <div>
@@ -56,7 +70,7 @@ const ProductDetail = ({product, products} : any) => {
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
+            <button type="button" className="add-to-cart" onClick={() => onAdd(product , qty)}>Add to Cart</button>
             <button type="button" className="buy-now" >Buy Now</button>
           </div>
         </div>
@@ -66,7 +80,7 @@ const ProductDetail = ({product, products} : any) => {
           <h2>You may also like</h2>
           <div className="marquee">
             <div className="maylike-products-container track">
-              {products.map((item : any) => (
+              {products.map((item : product) => (
                 <Product key={item._id} product={item} />
               ))}
             </div>

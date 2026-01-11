@@ -1,6 +1,5 @@
 "use Client";
-import React, { useContext } from "react";
-import StoreContext from "../Context/AuthContext";
+import { useStateContext } from "../Context/AuthContext";
 import {
   AiOutlineLeft,
   AiOutlineMinus,
@@ -19,7 +18,7 @@ const Cart = () => {
     cartItems,
     toogleCartItem,
     onRemove
-  } = useContext(StoreContext);
+  } = useStateContext()
   return (
     <div className="cart-wrapper">
       <div className="cart-container">

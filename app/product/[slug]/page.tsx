@@ -16,11 +16,7 @@ const ProductDetails = async ({ params }: PageProps) => {
   );
   const products = await client.fetch('*[_type == "Product"]');
 
-  return (
-   
-      <ProductDetail product={product} products={products} />
-  
-  );
+  return <ProductDetail product={product} products={products} />;
 };
 
 export default ProductDetails;

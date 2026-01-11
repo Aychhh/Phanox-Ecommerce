@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Head from 'next/head'
 import Navbar from './Navbar'
 import Footer from './Footer'
 
-const Layout = ({children}) => {
+const Layout = ({children} : {children : ReactNode}) => {
   return (
     <div className='layout'> 
       <Head>

@@ -1,8 +1,22 @@
 import { urlFor } from "@/lib/client";
 import Link from "next/link";
-import React from "react";
 
-const Product = ({ product }: any) => {
+interface product {
+  name: string;
+  details: string;
+  price: number;
+  image: any[];
+  _id : string;
+  quantity : number
+  slug : any
+};
+
+
+interface productProps {
+  product : product
+}
+
+const Product = ({ product }: productProps) => {
   return (
     <div>
       <Link href={`/product/${product.slug.current}`}>
