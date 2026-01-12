@@ -1,9 +1,22 @@
-import { urlFor } from '@/lib/client'
-import Link from 'next/link'
+import { urlFor } from "@/lib/client";
+import Link from "next/link";
 
-const FooterBanner = ({footerBanner : {discount,image,  buttonText, product, largeText1, largeText2, saleTime, smallText, midText, desc}} : any) => {
+const FooterBanner = ({
+  footerBanner: {
+    discount,
+    image,
+    buttonText,
+    product,
+    largeText1,
+    largeText2,
+    saleTime,
+    smallText,
+    midText,
+    desc,
+  },
+}: any) => {
   return (
-    <div className='footer-banner-container'>
+    <div className="footer-banner-container">
       <div className="banner-desc">
         <div className="left">
           <p>{discount}</p>
@@ -16,14 +29,14 @@ const FooterBanner = ({footerBanner : {discount,image,  buttonText, product, lar
           <h3>{midText}</h3>
           <p>{desc}</p>
           <Link href={`/product/${product}`}>
-          <button>{buttonText}</button>
+            <button>{buttonText}</button>
           </Link>
         </div>
 
-        <img src={urlFor(image).url()} alt="" className='footer-banner-image'/>
+        <img src={urlFor(image).url()} alt="" className="footer-banner-image" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FooterBanner
+export default FooterBanner;

@@ -10,6 +10,16 @@ import Link from "next/link";
 import { urlFor } from "@/lib/client";
 import { TiDeleteOutline } from "react-icons/ti";
 
+interface CartProduct {
+  name: string;
+  details: string;
+  price: number;
+  image: any[];
+  _id : string;
+  quantity : number;
+  slug : string
+}
+
 const Cart = () => {
   const {
     totalPrice,
@@ -49,7 +59,7 @@ const Cart = () => {
         )}
         <div className="product-container">
           {cartItems.length >= 1 &&
-            cartItems.map((item: any, index: number) => (
+            cartItems.map((item: CartProduct, index: number) => (
               <div className="product" key={index}>
                 <img
                   src={urlFor(item.image[0]).url()}

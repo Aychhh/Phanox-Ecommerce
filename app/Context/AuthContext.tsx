@@ -26,6 +26,7 @@ interface product {
   _id: string;
   image: any[];
   quantity: number;
+  slug: string;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -37,6 +38,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [qty, setQty] = useState(1);
 
+  // ADD ITEM TO THE CART LOGIC
   const onAdd = (product: product, quantity: number) => {
     const checkCartItem = cartItems.find(
       (item: any) => item._id === product._id
@@ -48,12 +50,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setQuantities((prevQuantity) => prevQuantity + quantity);
 
     if (checkCartItem) {
-      const updateCartItem = cartItems.map((cartProduct: any) => {
+      const updateCartItem = cartItems.map((cartProduct: product) => {
         if (cartProduct._id === product._id)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
           };
+        return cartProduct;
       });
       setCartItems(updateCartItem);
     } else {
@@ -64,6 +67,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     toast.success(`${qty} ${product.name} added to the cart`);
   };
 
+  // CHANGE THE QUANTITY OF SPECIFIC ITEM IN CART
   const toogleCartItem = (id: string, action: "inc" | "dec") => {
     const foundItems = cartItems.find((item: product) => item._id === id);
 
@@ -85,12 +89,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       setTotalPrice((prev) => prev + foundItems.price);
       setQuantities((prev) => prev + 1);
     }
-    if (action === "dec") {
+    if (action === "dec" && foundItems.quantity > 1) {
       setTotalPrice((prev) => prev - foundItems.price);
       setQuantities((prev) => prev - 1);
     }
   };
 
+  // REMOVE ITEM FORM THE CART
   const onRemove = (product: product) => {
     const foundItems = cartItems.find(
       (item: product) => item._id === product._id
