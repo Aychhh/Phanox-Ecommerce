@@ -22,7 +22,7 @@ const page = async () => {
   return (
     <div>
       <HerroBanner bannerData={bannerData.length && bannerData[0]} />
-
+      
       <div className="products-heading">
         <h2>Best Selling Headphones</h2>
         <p>Speakers of many variations</p>
